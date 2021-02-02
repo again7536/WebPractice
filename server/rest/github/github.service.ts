@@ -3,7 +3,14 @@ import { exec } from 'child_process';
 
 @Injectable()
 export class GithubService {
-    autoBuild() {
-        exec('npm run build');
+
+    async autoBuild():Promise<boolean> {
+        try {
+            await exec('npm run build');
+            return true;
+        } catch (err) {
+            console.log(err);
+            return false;
+        }
     }
 }
