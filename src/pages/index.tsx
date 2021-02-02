@@ -7,8 +7,7 @@ export default function Home() {
         <div>
             <h1>My blog</h1>
             <ul className='projects'>
-                <li><Link href="/autumn">SVG#1</Link></li>
-                <li><Link href="/webgl">WebGL#1</Link></li>
+                <li><Link href="/autumn">Autumn</Link></li>
             </ul>
         </div>
     );

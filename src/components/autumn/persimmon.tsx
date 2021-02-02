@@ -1,6 +1,6 @@
 import React, {useRef, useState, useEffect}from 'react';
 import SVG, { Props as SVGProps } from 'react-inlinesvg';
-import styles from '../../../styles/components/section/persimmon.module.scss';
+import styles from '../../styles/components/autumn/persimmon.module.scss';
 
 function Persimmon({scrollY, windowSize}) {
     const bannerRef = useRef<HTMLDivElement>();
@@ -49,16 +49,16 @@ function Persimmon({scrollY, windowSize}) {
                 <div className={styles.imageWrap}>
                     <img className={styles.image} 
                     style={{transform:`translateY(${-articleScrollY/8}px)`}} 
-                    src='/section/persimmon/persimmon2.jpg'/>
+                    src='/autumn/section/persimmon/persimmon2.jpg'/>
                     <img className={styles.image} 
                     style={{transform:`translateY(${articleScrollY/8}px)`}}
-                    src='/section/persimmon/persimmon1.jpg'/>
+                    src='/autumn/section/persimmon/persimmon1.jpg'/>
                     <img className={styles.image} 
                     style={{transform:`translateY(${-articleScrollY/8}px)`}}
-                    src='/section/persimmon/persimmon3.jpg'/>
+                    src='/autumn/section/persimmon/persimmon3.jpg'/>
                     <img className={styles.image} 
                     style={{transform:`translateY(${articleScrollY/8}px)`}}
-                    src='/section/persimmon/persimmon4.jpg'/>
+                    src='/autumn/section/persimmon/persimmon4.jpg'/>
                 </div>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. 

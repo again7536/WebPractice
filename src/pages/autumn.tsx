@@ -4,15 +4,15 @@ import useOnScreen from '../components/hooks/useOnScreen';
 import SVG, { Props as SVGProps } from 'react-inlinesvg';
 import styles from '../styles/pages/autumn.module.scss';
 
-import Apple from '../components/svg/section/apple';
-import Persimmon from '../components/svg/section/persimmon';
+import Apple from '../components/autumn/apple';
+import Persimmon from '../components/autumn/persimmon';
 
 interface Size{
     width: number,
     height: number
 }
 
-function SVGtest() {
+function Autumn() {
     const [scrollY, setScrollY] = useState<number>(0);
     const [windowSize, setWindowSize] = useState<Size>({width:0, height:0});
     const svgRef = useRef<HTMLDivElement>();
@@ -47,7 +47,7 @@ function SVGtest() {
             <div className={styles.page}>
                 <div className={styles.svgWrap} ref={svgRef}>
                     <SVG className={svgOnScreen? 'svg1' : 'svg1-off'} 
-                    src='/autumn4.svg' height={windowSize.width < 1024 ? '100vh': null} width={windowSize.width < 1024? null: '100vw'}/>
+                    src='/autumn/autumn.svg' height={windowSize.width < 1024 ? '100vh': null} width={windowSize.width < 1024? null: '100vw'}/>
                 </div>
                 
                 <Apple scrollY={scrollY} windowSize={windowSize}/>
@@ -62,4 +62,4 @@ function SVGtest() {
     )
 }
 
-export default SVGtest;
+export default Autumn;

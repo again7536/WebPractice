@@ -1,6 +1,6 @@
 import React, {useRef, useState, useEffect}from 'react';
 import SVG, { Props as SVGProps } from 'react-inlinesvg';
-import styles from '../../../styles/components/section/apple.module.scss';
+import styles from '../../styles/components/autumn/apple.module.scss';
 
 function Apple({scrollY, windowSize}) {
     const bannerRef = useRef<HTMLDivElement>();
@@ -14,10 +14,9 @@ function Apple({scrollY, windowSize}) {
     },[scrollY]);
 
     /* animation variables */
-    const speed = 1;
     const halfSize = (windowSize.height > windowSize.width? windowSize.height : windowSize.width) / 2;
 
-    const appleStyle = {
+    const appleStyle:React.CSSProperties = {
         transform:`
             translateX(${bannerScrollY <  windowSize.width / 2 ? 
                 bannerScrollY*2 
@@ -43,7 +42,7 @@ function Apple({scrollY, windowSize}) {
             <div ref={bannerRef} className={styles.banner}>
                 <h1>Foods in season</h1>
                 <div className={styles.appleWrap}>
-                    <SVG style={bannerScrollY > -500 ? appleStyle :null}
+                    <SVG style={bannerScrollY > -500 ? appleStyle : undefined}
                     className={bannerScrollY > halfSize * 2 ? styles.appleMasked : styles.apple} 
                     src='/section/apple/apple.svg'/>
                 </div>
@@ -58,16 +57,16 @@ function Apple({scrollY, windowSize}) {
                 <div className={styles.imageWrap}>
                     <img className={styles.image} 
                     style={{transform:`translateY(${-articleScrollY/8}px)`}} 
-                    src='/section/apple/apple_pick.jpg'/>
+                    src='/autumn/section/apple/apple_pick.jpg'/>
                     <img className={styles.image} 
                     style={{transform:`translateY(${articleScrollY/8}px)`}}
-                    src='/section/apple/apple_pick2.webp'/>
+                    src='/autumn/section/apple/apple_pick2.webp'/>
                     <img className={styles.image} 
                     style={{transform:`translateY(${-articleScrollY/8}px)`}}
-                    src='/section/apple/apple_pick3.jpeg'/>
+                    src='/autumn/section/apple/apple_pick3.jpeg'/>
                     <img className={styles.image} 
                     style={{transform:`translateY(${articleScrollY/8}px)`}}
-                    src='/section/apple/apple_pick4.jpg'/>
+                    src='/autumn/section/apple/apple_pick4.jpg'/>
                 </div>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
