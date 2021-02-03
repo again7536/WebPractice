@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { Request } from 'express';
 import { promisify } from 'util';
+import { createHmac, timingSafeEqual } from 'crypto';
 
 @Injectable()
 export class GithubService {
 
     private verifyPostData (req:Request) :boolean {
-        const crypto = require('crypto');
+        //const crypto = require('crypto');
         const secret = 'wlrmadms159';
         // GitHub: X-Hub-Signature
         // Gogs:   X-Gogs-Signature
@@ -17,10 +18,10 @@ export class GithubService {
         }
         
         const sig = req.get(sigHeaderName) || '';
-        const hmac = crypto.createHmac('sha1', secret);
+        const hmac = createHmac('sha1', secret);
         const digest = Buffer.from('sha1=' + hmac.update(payload).digest('hex'), 'utf8');
         const checksum = Buffer.from(sig, 'utf8');
-        if (checksum.length !== digest.length || !crypto.timingSafeEqual(digest, checksum)) {
+        if (checksum.length !== digest.length || !timingSafeEqual(digest, checksum)) {
           return false;
         }
         return true;
