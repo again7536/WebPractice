@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Request } from 'express';
 import { createHmac, timingSafeEqual } from 'crypto';
-import { exec } from 'child_process';
+import { exec, spawn } from 'child_process';
 
 @Injectable()
 export class GithubService {
@@ -37,11 +37,12 @@ export class GithubService {
                     console.log(stdout);
                     console.error(stderr);
                     console.log('build done');
-                    exec('pm2 restart blog', (error, stdout, stderr) => {
-                        console.log(stdout);
-                        console.error(stderr);
-                        console.log('server restarted');
-                    });
+                    const subprocess = spawn('pm2', ['restart', 'blog'], {
+                        detached: true,
+                        stdio: 'ignore'
+                      });
+                      
+                    subprocess.unref();
                 });
             });
             return true;
