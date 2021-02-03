@@ -40,7 +40,7 @@ export class GithubService {
                     const subprocess = spawn('pm2', ['restart', 'blog'], {
                         detached: true,
                         stdio: 'ignore'
-                      });
+                    });
                       
                     subprocess.unref();
                 });
