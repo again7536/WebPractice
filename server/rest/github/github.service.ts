@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Request } from 'express';
-import { promisify } from 'util';
 import { createHmac, timingSafeEqual } from 'crypto';
+import child_process from 'child_process';
 
 @Injectable()
 export class GithubService {
@@ -27,19 +27,17 @@ export class GithubService {
         return true;
     }
 
-    async autoBuild( req:Request ):Promise<boolean> {
-        const exec = promisify(require('child_process').exec);
-        
+    autoBuild( req:Request ):boolean {   
         if(this.verifyPostData(req) === true) {
-            try{
-                const {stdout, stderr} = await exec('git pull && npm run build');
+            child_process.exec('git pull', (error, stdout, stderr) => {
                 console.log(stdout);
                 console.error(stderr);
-                return true;
-            } catch (err) {
-                console.error(err);
-                return false;
-            }
+                child_process.exec('npm run build', (error, stdout, stderr) => {
+                    console.log(stdout);
+                    console.error(stderr);
+                });
+            });
+            return true;
         }
         else {
             return false;
