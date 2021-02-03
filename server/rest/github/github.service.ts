@@ -37,6 +37,11 @@ export class GithubService {
                     console.log(stdout);
                     console.error(stderr);
                     console.log('build done');
+                    exec('pm2 restart blog', (error, stdout, stderr) => {
+                        console.log(stdout);
+                        console.error(stderr);
+                        console.log('server restarted');
+                    });
                 });
             });
             return true;
