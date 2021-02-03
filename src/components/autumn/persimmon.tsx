@@ -41,7 +41,7 @@ function Persimmon({scrollY, windowSize}) {
             <div ref={bannerRef} 
             className={styles.banner}
             style={{backgroundColor : bannerScrollY < halfSize ? '#5c0000' : 'orange'}}>
-                <SVG src='/section/persimmon/tree3.svg' className={styles.persimmon}/>
+                <SVG src='/autumn/section/persimmon/tree3.svg' className={styles.persimmon}/>
             </div>
 
             <div className={styles.article} ref={articleRef}>

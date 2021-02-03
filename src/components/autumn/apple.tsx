@@ -44,7 +44,7 @@ function Apple({scrollY, windowSize}) {
                 <div className={styles.appleWrap}>
                     <SVG style={bannerScrollY > -500 ? appleStyle : undefined}
                     className={bannerScrollY > halfSize * 2 ? styles.appleMasked : styles.apple} 
-                    src='/section/apple/apple.svg'/>
+                    src='/autumn/section/apple/apple.svg'/>
                 </div>
 
             </div>
