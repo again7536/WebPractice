@@ -6,7 +6,7 @@ export class GithubService {
 
     async autoBuild():Promise<boolean> {
         try {
-            exec('cd /home/blog && git pull && npm run build');
+            exec('git pull && npm run build', ()=>console.log('builded'));
             return true;
         } catch (err) {
             console.log(err);
