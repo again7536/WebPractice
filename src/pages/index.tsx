@@ -9,7 +9,7 @@ export default function Home() {
             <ul className='projects'>
                 <li><Link href="/autumn">Autumn</Link></li>
             </ul>
-            hiaatesttest2:
+            hiaa:
             {process.env.NODE_ENV}
         </div>
     );
