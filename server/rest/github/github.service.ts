@@ -30,6 +30,7 @@ export class GithubService {
     autoBuild( req:Request ):boolean {   
         if(this.verifyPostData(req) === true) {
             exec('git pull', (error, stdout, stderr) => {
+                console.log('testtesttest');
                 console.log(stdout);
                 console.error(stderr);
                 exec('npm run build', (error, stdout, stderr) => {
