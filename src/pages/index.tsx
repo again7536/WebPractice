@@ -9,7 +9,7 @@ export default function Home() {
             <ul className='projects'>
                 <li><Link href="/autumn">Autumn</Link></li>
             </ul>
-            this is for test2
+            this is for test22
         </div>
     );
 }
