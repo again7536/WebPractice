@@ -31,7 +31,7 @@ export class GithubService {
         
         if(this.verifyPostData(req) === true) {
             try{
-                const {stdout, stderr} = await exec('git pull && npm run build && npm start');
+                const {stdout, stderr} = await exec('git pull && npm run build');
                 console.log(stdout);
                 console.error(stderr);
                 return true;
