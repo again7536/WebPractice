@@ -15,6 +15,11 @@ a {
   box-sizing: border-box;
 }
 
+/* bootstrap css 
+@import "~bootstrap/scss/bootstrap";
+*/
+
+/* mixin functions */
 @mixin animation ($delay, $duration, $name, $timing, $iter) {
   animation-delay: $delay;
   animation-duration: $duration;

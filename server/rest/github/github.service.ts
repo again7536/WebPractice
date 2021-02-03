@@ -33,16 +33,20 @@ export class GithubService {
                 console.log(stdout);
                 console.error(stderr);
                 console.log('git pull done');
-                exec('npm run build', (error, stdout, stderr) => {
+                exec('npm install', (error, stdout, stderr) => {
                     console.log(stdout);
                     console.error(stderr);
                     console.log('build done');
-                    const subprocess = spawn('pm2', ['restart', 'blog'], {
-                        detached: true,
-                        stdio: 'ignore'
+                    exec('npm run build', (error, stdout, stderr) => {
+                        console.log(stdout);
+                        console.error(stderr);
+                        console.log('build done');
+                        const subprocess = spawn('pm2', ['restart', 'blog'], {
+                            detached: true,
+                            stdio: 'ignore'
+                        });
+                        subprocess.unref();
                     });
-                      
-                    subprocess.unref();
                 });
             });
             return true;
