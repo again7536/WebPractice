@@ -6,6 +6,7 @@ import styles from '../styles/pages/autumn.module.scss';
 
 import Apple from '../components/autumn/apple';
 import Persimmon from '../components/autumn/persimmon';
+import useWindowSize from '../components/hooks/useWindowSize';
 
 interface Size{
     width: number,
@@ -14,30 +15,19 @@ interface Size{
 
 function Autumn() {
     const [scrollY, setScrollY] = useState<number>(0);
-    const [windowSize, setWindowSize] = useState<Size>({width:0, height:0});
+    const windowSize = useWindowSize();
     const svgRef = useRef<HTMLDivElement>();
     const svgOnScreen = useOnScreen(svgRef, '-100px');
 
     const scrolled = () => {
         setScrollY(window.scrollY);
     }
-    const resized = () => {
-        setWindowSize({width:window.outerWidth, height:window.outerHeight});
-    }
-
-    useEffect(()=> {
-        resized();
-    },[]);
 
     useEffect(()=> {
         window.addEventListener('scroll', scrolled, false);
         return () => window.removeEventListener('scroll', scrolled, false);
     }, [scrollY]);
 
-    useEffect(()=>{
-        window.addEventListener('resize', resized);
-        return () => window.removeEventListener('resize', resized);
-    }, [windowSize]);
 
     return (
         <>
