@@ -1,69 +1,56 @@
 import React, {useEffect, useState} from 'react';
 import Link from 'next/link';
 import styles from '../styles/pages/Home.module.scss';
-import useWindowSize from '../components/hooks/useWindowSize';
+
 import SVG from 'react-inlinesvg';
+import SlotText from '../components/home/slotText';
 
-interface Props {
-    texts:string[];
-}
-
-const SlotText = ({texts}:Props):JSX.Element => {
-    const [slotIndex, setSlotIndex] = useState(-2);
-    const windowSize = useWindowSize();
-
-    useEffect( () => rollSlot(slotIndex), []);
-
-    const rollSlot = (slotIndex) => {
-        if(slotIndex < texts.length-1) {
-            setSlotIndex(slotIndex+1)
-            setTimeout(() => rollSlot(slotIndex+1), 1200);
-        }
-    }
-
-    const elems = texts.map((text, idx) => {
-        return <span key={idx}>{text}</span>
-    });
-
-    const minUnit = windowSize.height > windowSize.width ? 'vw': 'vh';
-
-    return (
-        <div className={styles.slotWrap}>
-            <div className={styles.slot}
-                style={{transform:`translateY(${-20 * slotIndex}${minUnit})`}}
-            >
-                {elems}
-            </div>
-        </div>
-    );
-}
+interface FloatMove {
+    x:number,
+    y:number
+};
 
 export default function Home():JSX.Element {
+    const [floatMove1, setFloatMove1] = useState<FloatMove>({x:0, y:0});
+    const [floatMove2, setFloatMove2] = useState<FloatMove>({x:0, y:0});
+
+    useEffect(() => {
+        const id = setInterval(()=>{  
+            setFloatMove1({x:Math.random()*10-5, y:Math.random()*10-5});
+            setFloatMove2({x:Math.random()*10-5, y:Math.random()*10-5});
+        }, 3000);
+        return ()=>clearInterval(id);
+    }, [])
 
     return (
         <div>
+            <style>{`
+                #circle1{
+                    transition:3.0s linear;
+                    transform:translate3D(${floatMove1.x}%, ${floatMove1.y}%, 0);
+                }
+                #circle2 {
+                    transition:3.0s linear;
+                    transform:translate3D(${floatMove2.x}%, ${floatMove2.y}%, 0);
+                }
+                #gear1 {
+                    transform-origin:67% 29%;
+                    animation:rotate 2.0s forwards linear infinite;
+                }
+                #gear2 {
+                    transform-origin:77.7% 38%;
+                    animation:rotate 2.0s forwards linear reverse infinite;
+                }
+                @keyframes rotate {
+                    from { transform:rotateZ(0deg); }
+                    to   { transform:rotateZ(360deg);}
+                }
+            `}</style>
             <div className={styles.banner}>
                 <span>I AM A</span>
-                <SlotText texts={['Junior', 'Trendy', 'Skilled', 'FrontEnd']}/>
+                <SlotText texts={['Junior', 'Trendy', 'FrontEnd']}/>
                 <span>DEVELOPER</span>
                 <SVG className={styles.bannerImage} src='/home/coding.svg'></SVG>
-            </div>
-            <div className={styles.projects}>
-                <h1>works</h1>
-                <div className={styles.cardWrap}>
-                    <div className={styles.card}>
-                        <img src='/home/projects/project1.png'></img>
-                    </div>
-                    <div className={styles.card}>
-                        <img src='/home/projects/project1.png'></img>
-                    </div>
-                    <div className={styles.card}>
-                        <img src='/home/projects/project1.png'></img>
-                    </div>
-                    <div className={styles.card}>
-                        <img src='/home/projects/project1.png'></img>
-                    </div>
-                </div>
             </div>
 
             <div className={styles.footer}>

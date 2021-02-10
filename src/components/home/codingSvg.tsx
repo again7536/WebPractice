@@ -1,6 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 3710 3710">
+import React from 'react';
+
+export default function CodingSvg() {
+
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3710 3710">
   <defs>
-    <style>
+    <style>{`
       .cls-1 {
         isolation: isolate;
       }
@@ -271,7 +276,8 @@
 
       .cls-68 {
         fill: url(#linear-gradient-51);
-      }
+      }`
+    }
     </style>
     <linearGradient id="linear-gradient" x1="3559.83" y1="4036" x2="1126.73" y2="1014.24" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#dae3fe"/>
@@ -503,3 +509,6 @@
     </g>
   </g>
 </svg>
+
+    );
+}

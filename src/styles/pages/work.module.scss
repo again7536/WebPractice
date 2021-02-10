@@ -1,0 +1,130 @@
+@mixin animation ($delay, $duration, $name, $timing, $fill, $iter) {
+    animation-delay: $delay;
+    animation-duration: $duration;
+    animation-name: $name;
+    animation-timing-function: $timing;
+    animation-fill-mode: $fill;
+    animation-iteration-count: $iter;
+}
+@mixin keyframes ($animation_name) {
+    @keyframes #{$animation_name} {
+        @content;
+    }
+}
+@font-face {
+    font-family: 'Code-Bold';
+    src: url('/fonts/CODE-Bold.otf');
+}
+
+.work {
+    position:relative;
+    height:100vh;
+    width:100vw;
+    background-color:#FE796E;
+    overflow:hidden;
+}
+
+.circle {
+    position:absolute;
+    height:100vh;
+    width:100vh;
+    left:-40vh;
+   
+    border:4px solid #BFD3FC;
+    border-radius:50%;
+    color:#BFD3FC;
+    font-family:Code-Bold;
+
+    transition:1.0s ease-out;
+    background-color:transparent;
+
+    h1 {
+        display:flex;
+        align-items: center;
+        justify-content: center;
+
+        position:absolute;
+        width:2%;
+        height:2%;
+        left:49%;
+        top:49%;
+
+        font-size:72pt;
+        margin:0;
+    }
+}
+
+.years {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    position:absolute;
+    height:4%;
+    width:4%;
+    top:48%;
+    left:48%;
+
+    transform-origin: center center;
+    font-size:15vw;
+}
+
+.projects {
+    display:flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    position:absolute;
+    right:0;
+    width:calc(100vw - 70vh);
+    height:100vh;
+
+    padding:5% 5%;
+
+    .project, .projectHide{
+        width:30vw;
+        height:40vh;
+        img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+        }
+    }
+    .project{
+        @include animation(0s, 1s, fadein, ease, forwards, 1);
+        @include keyframes (fadein) {
+            from {opacity:0}
+            to   {opacity:1}
+        }
+    }
+
+    .projectHide {
+        @include animation(0s, 1s, fadeout, ease, forwards, 1);
+        @include keyframes (fadeout) {
+            from {opacity:1}
+            to   {opacity:0}
+        }
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .circle{
+        height:100vw;
+        width :100vw;
+        top:-50vw;
+        left:0;
+    }
+    .years{
+        font-size:13vw;
+    }
+
+    .projects{
+        width:100%;
+        height:calc(100vh - 60vw);
+        bottom:0;
+        padding:7% 0;
+        .project, .projectHide{
+            width:100vw;
+            height:20vh;
+        }
+    }
+}

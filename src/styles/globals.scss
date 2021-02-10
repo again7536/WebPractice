@@ -20,11 +20,12 @@ a {
 */
 
 /* mixin functions */
-@mixin animation ($delay, $duration, $name, $timing, $iter) {
+@mixin animation ($delay, $duration, $name, $timing, $fill, $iter) {
   animation-delay: $delay;
   animation-duration: $duration;
   animation-name: $name;
   animation-timing-function: $timing;
+  animation-fill-mode: $fill;
   animation-iteration-count: $iter;
 }
 
@@ -76,8 +77,9 @@ a {
             transform: translate(#{random(10) - 5}vw, 40vh);
           }
         }
-        @include animation(#{random(8)}s, #{random(10) + 9}s, fall, ease-out, infinite);
+        @include animation(#{random(8)}s, #{random(10) + 9}s, fall, none, ease-out, infinite);
       }
     }
   }
 }
+

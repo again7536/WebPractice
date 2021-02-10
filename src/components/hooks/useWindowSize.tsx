@@ -9,7 +9,7 @@ export default function useWindowSize() {
     const [windowSize, setWindowSize] = useState<WindowSize>({width:0, height:0});
 
     const resized = () => {
-        setWindowSize({width:window.outerWidth, height:window.outerHeight});
+        setWindowSize({width:window.innerWidth, height:window.innerHeight});
     }
 
     useEffect(()=> {
