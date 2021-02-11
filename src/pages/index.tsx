@@ -4,6 +4,7 @@ import styles from '../styles/pages/Home.module.scss';
 
 import SVG from 'react-inlinesvg';
 import SlotText from '../components/home/slotText';
+import Navbar from '../components/home/navbar';
 
 interface FloatMove {
     x:number,
@@ -49,11 +50,12 @@ export default function Home():JSX.Element {
                     to   { transform:rotateZ(360deg);}
                 }
             `}</style>
+            <Navbar/>
             <div className={styles.banner}>
                 <SlotText start={firstSlotEnd} delay={0.2} length={3} >
                     <span>I AM A</span>
                     <span>&nbsp;</span>
-                    <Link href='/about'><span>About Me</span></Link>
+                    <Link href='/about'><span style={{cursor:'pointer'}}>About Me</span></Link>
                 </SlotText>
 
                 <SlotText start={firstSlotEnd} delay={0.35} length={3}> 
@@ -65,13 +67,13 @@ export default function Home():JSX.Element {
                         <span>Frontend</span>
                     </SlotText>
                     <span>&nbsp;</span>
-                    <Link href='/work'><span>Works</span></Link>
+                    <Link href='/work'><span style={{cursor:'pointer'}}>Works</span></Link>
                 </SlotText>
 
                 <SlotText start={firstSlotEnd} delay={0.5} length={3}>
                     <span>DEVELOPER</span>
                     <span>&nbsp;</span>
-                    <Link href='/contact'><span>Contact</span></Link>
+                    <Link href='/contact'><span style={{cursor:'pointer'}}>Contact</span></Link>
                 </SlotText>
                 
                 <SVG className={styles.bannerImage} src='/home/coding.svg'></SVG>

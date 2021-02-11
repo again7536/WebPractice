@@ -1,0 +1,38 @@
+@font-face {
+    font-family: 'Code-Bold';
+    src: url('/fonts/CODE-Bold.otf');
+}
+
+.navbar{
+    position:fixed;
+    top:0;
+
+    width:100vw;
+    height:auto;
+    z-index:99;
+
+    font-family:Code-Bold;
+    color:black;
+    font-size:calc(1vh + 1vw);
+
+    span{
+        position:absolute;
+        left:5vh;
+        top:3vh;
+
+        cursor: pointer;
+    }
+
+    ul {
+        position:absolute;
+        right:0;
+        top:3vh;
+        display:inline-flex;
+        list-style:none;
+        margin:0;
+        li{
+            margin-right:6vh;
+            cursor: pointer;
+        }
+    }
+}

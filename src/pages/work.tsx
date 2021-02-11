@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import useWindowSize from '../components/hooks/useWindowSize';
 import styles from '../styles/pages/work.module.scss';
 
+import Navbar from '../components/home/navbar';
+
 export default function Work() {
     const [touchStartX, setTouchStartX] = useState<number>(0);
     const [scroll, setScroll] = useState<number>(0);
@@ -10,7 +12,7 @@ export default function Work() {
     useEffect(()=> {
         const wheelMoved:EventListener = (e:WheelEvent) => setScroll(scroll + e.deltaY);
         const touchMoved:EventListener = (e:TouchEvent) => {
-            if(Math.abs(e.changedTouches[0].pageX - touchStartX) > 5)
+            if(Math.abs(e.changedTouches[0].pageX - touchStartX) > 10)
                 setScroll(scroll - 4*(e.changedTouches[0].pageX - touchStartX));
             setTouchStartX(e.changedTouches[0].pageX);
         };
@@ -38,6 +40,8 @@ export default function Work() {
     const images = [{year:2021, src:'/home/projects/project1.png'},
                     {year:2022, src:'/home/projects/project1.png'}];
     return(
+        <>
+        <Navbar/>
         <div className={styles.work}>
             <div className={styles.circle} style={{transform:`rotate(${scroll*rotationSpeed}deg)`}}>
                 <h1>works</h1>
@@ -61,6 +65,7 @@ export default function Work() {
                 </div>
             </div>
         </div>
+        </>
     );
 }
 
