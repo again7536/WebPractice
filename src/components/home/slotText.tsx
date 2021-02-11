@@ -3,25 +3,35 @@ import useWindowSize from '../hooks/useWindowSize';
 import styles from '../../styles/components/home/slotText.module.scss';
 
 interface Props {
-    texts:string[];
+    start:Boolean,
+    length:number,
+    onSlotEnd?:()=>void,
+    delay?:number
 }
 
-const SlotText = ({texts}:Props):JSX.Element => {
-    const [slotIndex, setSlotIndex] = useState(-2);
+const SlotText:React.FC<Props> = ({start, length, delay, onSlotEnd, children}):JSX.Element => {
+    const [slotIndex, setSlotIndex] = useState(0);
     const windowSize = useWindowSize();
 
-    useEffect( () => rollSlot(slotIndex), []);
+    useEffect( () => {
+        if(start) {
+            if(delay !== undefined) {
+                const id = setTimeout(()=> {
+                    rollSlot(slotIndex);
+                }, delay*1000);
+                return () => clearTimeout(id);
+            }
+            else rollSlot(slotIndex);
+        }
+    }, [start]);
 
     const rollSlot = (slotIndex) => {
-        if(slotIndex < texts.length-1) {
+        if(slotIndex < length-1) {
             setSlotIndex(slotIndex+1)
             setTimeout(() => rollSlot(slotIndex+1), 1000);
         }
+        else if(onSlotEnd !== undefined) onSlotEnd();
     }
-
-    const elems = texts.map((text, idx) => {
-        return <span key={idx}>{text}</span>
-    });
 
     const minUnit = windowSize.height > windowSize.width ? 'vw': 'vh';
 
@@ -30,7 +40,7 @@ const SlotText = ({texts}:Props):JSX.Element => {
             <div className={styles.slot}
                 style={{transform:`translateY(${-20 * slotIndex}${minUnit})`}}
             >
-                {elems}
+                {children}
             </div>
         </div>
     );

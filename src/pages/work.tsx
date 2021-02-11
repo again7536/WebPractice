@@ -3,24 +3,40 @@ import useWindowSize from '../components/hooks/useWindowSize';
 import styles from '../styles/pages/work.module.scss';
 
 export default function Work() {
+    const [touchStartX, setTouchStartX] = useState<number>(0);
     const [scroll, setScroll] = useState<number>(0);
     const windowSize = useWindowSize();
 
     useEffect(()=> {
-        const changeScroll:EventListener = (e:WheelEvent) => setScroll(scroll - e.deltaY);
-        window.addEventListener('wheel', changeScroll);
-        return ()=>window.removeEventListener('wheel', changeScroll);
-    }, [scroll]);
+        const wheelMoved:EventListener = (e:WheelEvent) => setScroll(scroll + e.deltaY);
+        const touchMoved:EventListener = (e:TouchEvent) => {
+            if(Math.abs(e.changedTouches[0].pageX - touchStartX) > 5)
+                setScroll(scroll - 4*(e.changedTouches[0].pageX - touchStartX));
+            setTouchStartX(e.changedTouches[0].pageX);
+        };
+        window.addEventListener('wheel', wheelMoved);
+        window.addEventListener('touchmove', touchMoved);
+        return ()=> {
+            window.removeEventListener('wheel', wheelMoved);
+            window.removeEventListener('touchmove', touchMoved);
+        }
+    }, [scroll, touchStartX]);
+
+    useEffect(()=> {
+        const touchStarted:EventListener = (e:TouchEvent) => setTouchStartX(e.touches[0].pageX);
+        window.addEventListener('touchstart', touchStarted);
+        return ()=>window.removeEventListener('touchstart', touchStarted);
+    }, []);
 
     const years = [2021, 2022, 2023];
 
     const rotationSpeed = 0.1;
-    const offset = (windowSize.width<1025? 90 : 0) - 180/years.length;
+    const offset = 180/years.length;
     const temp = Math.floor(Math.abs(scroll*rotationSpeed+offset) / (360 / years.length)) % years.length;
-    const yearIndex = scroll*rotationSpeed-180/years.length < 0 ? temp : years.length - 1 - temp;
+    const yearIndex = scroll*rotationSpeed+offset < 0 ? years.length - 1 - temp : temp;
+    //these will be replaced with DB data.
     const images = [{year:2021, src:'/home/projects/project1.png'},
                     {year:2022, src:'/home/projects/project1.png'}];
-    console.log(yearIndex);
     return(
         <div className={styles.work}>
             <div className={styles.circle} style={{transform:`rotate(${scroll*rotationSpeed}deg)`}}>
@@ -29,8 +45,8 @@ export default function Work() {
                     <div className={styles.years}
                         key={index}
                         style={{
-                            transform:`rotate(${(windowSize.width<1025? 90 : 0) + 360/years.length * index}deg) 
-                                translateX(${windowSize.width<1025?'60vw':'70vh'})
+                            transform:`rotate(${(windowSize.width<1025? 90 : 0) - 360/years.length * index}deg) 
+                                translateX(${windowSize.width<1025?'60vw':'60vh'})
                                 rotate(${windowSize.width<1025?'-90':'0'}deg) `
                         }}>
                             {year}

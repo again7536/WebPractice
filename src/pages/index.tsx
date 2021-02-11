@@ -13,6 +13,9 @@ interface FloatMove {
 export default function Home():JSX.Element {
     const [floatMove1, setFloatMove1] = useState<FloatMove>({x:0, y:0});
     const [floatMove2, setFloatMove2] = useState<FloatMove>({x:0, y:0});
+    const [firstSlotEnd, setFirstSlotEnd] = useState<Boolean>(false);
+
+    const firstSlotEnded = () => setFirstSlotEnd(true);
 
     useEffect(() => {
         const id = setInterval(()=>{  
@@ -47,15 +50,31 @@ export default function Home():JSX.Element {
                 }
             `}</style>
             <div className={styles.banner}>
-                <span>I AM A</span>
-                <SlotText texts={['Junior', 'Trendy', 'FrontEnd']}/>
-                <span>DEVELOPER</span>
-                <SVG className={styles.bannerImage} src='/home/coding.svg'></SVG>
-            </div>
+                <SlotText start={firstSlotEnd} delay={0.2} length={3} >
+                    <span>I AM A</span>
+                    <span>&nbsp;</span>
+                    <Link href='/about'><span>About Me</span></Link>
+                </SlotText>
 
-            <div className={styles.footer}>
-                <Link href="/autumn">Autumn</Link>
-                <a href='https://www.freepik.com/vectors/abstract'>Abstract vector created by vectorjuice - www.freepik.com</a>
+                <SlotText start={firstSlotEnd} delay={0.35} length={3}> 
+                    <SlotText start={true} length={5} onSlotEnd={firstSlotEnded}>
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                        <span>Junior</span>
+                        <span>Skilled</span>
+                        <span>Frontend</span>
+                    </SlotText>
+                    <span>&nbsp;</span>
+                    <Link href='/work'><span>Works</span></Link>
+                </SlotText>
+
+                <SlotText start={firstSlotEnd} delay={0.5} length={3}>
+                    <span>DEVELOPER</span>
+                    <span>&nbsp;</span>
+                    <Link href='/contact'><span>Contact</span></Link>
+                </SlotText>
+                
+                <SVG className={styles.bannerImage} src='/home/coding.svg'></SVG>
             </div>
         </div>
     );
