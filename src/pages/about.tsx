@@ -9,7 +9,14 @@ export default function About():JSX.Element {
         <>
         <Navbar/>
         <div className={styles.about}>
-            <div className={styles.image}></div>
+            <div className={styles.image}/>
+            <div className={styles.intro}>
+                <h1>Hello!</h1>
+                <p>
+                    I am a frontend developer from S.Korea and 
+                    attending the third year in SungKyunKwan University.
+                </p>
+            </div>
         </div>
         </>
     );

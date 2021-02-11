@@ -1,19 +1,65 @@
+@font-face {
+    font-family: 'Code-Bold';
+    src: url('/fonts/CODE-Bold.otf');
+}
 .about{
-    height:100vh;
+    position:relative;
+    min-height:100vh;
     width:100vw;
+    padding:10vh 10vw;
 
     background-color:#BFD3FC;
 }
 
 .image{
-    position:relative;
-    top:10vh;
-    left:10vw;
-
+    position:absolute;
     width:60vh;
     height:80vh;
     
     border:1px solid black;
     border-radius: 50%;
     background-image:url('/home/shorecrab.png');
+}
+
+.intro {
+    display:flex;
+    flex-flow:column;
+
+    position:absolute;
+    right:0;
+
+    display:flex;
+    justify-content:center;
+
+    width:calc(80vw - 60vh);
+    height:80vh;
+
+    h1{
+        font-family:Code-Bold;
+        font-size:10vw;
+        margin:0;
+    }
+    p{
+        font-size:3vw;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .image{
+        position:relative;
+        width:80vw;
+        height:80vw;
+    }
+    .intro{
+        justify-content: flex-start;
+        align-items:center;
+        position:relative;
+        width:100%;
+        height:auto;
+        padding-top:10vw;
+         
+        p{
+            font-size:5vw;
+        }
+    }
 }
