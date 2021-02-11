@@ -15,7 +15,7 @@
     color:black;
     font-size:calc(1vh + 1vw);
 
-    span{
+    > span{
         position:absolute;
         left:5vh;
         top:3vh;
@@ -23,7 +23,7 @@
         cursor: pointer;
     }
 
-    ul {
+    .pc {
         position:absolute;
         right:0;
         top:3vh;
@@ -33,6 +33,39 @@
         li{
             margin-right:6vh;
             cursor: pointer;
+        }
+    }
+
+    .mobile{
+        display:none;
+        position:absolute;
+        right:3vh;
+        top:2.5vh;
+        width:9vw;
+        height:5vw;
+
+        flex-flow:column;
+        
+        > span{
+            min-height:4px;
+            background-color: black;
+
+            width:100%;
+            margin-bottom:2vw;
+        }
+    }
+}
+
+@media screen and (max-width:768px) {
+    .navbar{
+        span{
+            font-size:4vh;
+        }
+        .pc{
+            display:none;
+        }
+        .mobile{
+            display:flex;
         }
     }
 }

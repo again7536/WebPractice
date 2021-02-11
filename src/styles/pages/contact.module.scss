@@ -1,6 +1,96 @@
+@font-face {
+    font-family: 'Code-Bold';
+    src: url('/fonts/CODE-Bold.otf');
+}
+
 .contact{
+    position:relative;
     height:100vh;
     width:100vw;
 
     background-color:#BFD3FC;
+    h1, h2 {
+        position:absolute;
+        margin:0;
+        width:100vw;
+
+        font-family:Code-Bold;
+        font-size:23.8vw;
+        color:#FE796E;
+        word-wrap:break-word;
+    }
+    h1{ top:5vh; }
+    h2{ bottom:5vh; }
+
+    footer {
+        position:absolute;
+        bottom:0;
+        width:100vw;
+        background-color:#0c0c0c;
+        color:white;
+
+        font-size:2vh;
+
+        > div{
+            text-align:center;
+        }
+    }
+}
+
+.images{
+    position:absolute;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+
+    top:20vh;
+    width:100vw;
+    height:60vh;
+
+    .image{
+        width:20%;
+        &:not(:last-child) {
+            margin-right:5vw;
+        }
+        img {
+            width:100%;
+        }
+        p{
+            display:flex;
+            justify-content: center;
+            align-items:center;
+
+            font-family:Code-Bold;
+            font-size:1.5vw;
+            width:100%;
+        }
+    }
+}
+
+
+@media screen and (max-width:767px) {
+    .contact{
+        h1, h2 {
+            width:fit-content;
+            writing-mode: vertical-lr;
+            text-orientation: upright;
+            letter-spacing: -10vw;
+            font-size:18vh;
+        }
+        h1{ top:2vh; }
+        h2{ right:0; top:35vh; }
+        footer {
+            font-size:1.5vw;
+        }
+    }
+    .images{
+        flex-flow:column;
+        .image{
+            width:32%;
+            &:not(:last-child) {
+                margin-right:0;
+                margin-bottom:3vh;
+            }
+        }
+    }
 }
