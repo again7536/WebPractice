@@ -56,6 +56,33 @@
     }
 }
 
+.sidebar{
+    position:absolute;
+    right:-60vw;
+    transition:0.6s ease-out;
+    
+    .mask{
+        position:absolute;
+        width:100vw;
+        height:100vh;
+        left:-100vw;
+        background-color:#1c1c1c3c;
+    }
+
+    .menu{
+        padding:10vh 10vw;
+        margin:0;
+        width:60vw;
+        height:100vh;
+        list-style:none;
+        background-color:white;
+        li{
+            font-size:3vh;
+            margin-bottom:6vh;
+        }
+    }
+}
+
 @media screen and (max-width:767px) {
     .navbar{
         span{

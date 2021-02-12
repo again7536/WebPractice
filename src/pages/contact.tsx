@@ -7,8 +7,8 @@ export default function Contact() {
         <>
         <Navbar/>
         <div className={styles.contact}>
-            <h1>Contact</h1>
-            <h2>Anytime</h2>
+            <h1>ContactContact</h1>
+            <h2>AnytimeAnytime</h2>
             <div className={styles.images}>
                 <div className={styles.image}>
                     <a href='https://github.com/again7536' >
