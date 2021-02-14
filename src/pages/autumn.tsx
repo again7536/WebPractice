@@ -13,7 +13,7 @@ interface Size{
     height: number
 }
 
-function Autumn() {
+export default function Autumn() {
     const [scrollY, setScrollY] = useState<number>(0);
     const windowSize = useWindowSize();
     const svgRef = useRef<HTMLDivElement>();
@@ -52,4 +52,8 @@ function Autumn() {
     )
 }
 
-export default Autumn;
+export async function getStaticProps(context) {
+    return {
+        props: {}
+    }
+}

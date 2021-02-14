@@ -42,3 +42,9 @@ export default function About():JSX.Element {
         </>
     );
 }
+
+export async function getStaticProps(context) {
+    return {
+        props: {}
+    }
+}

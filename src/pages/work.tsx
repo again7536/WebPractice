@@ -91,3 +91,9 @@ function Project({mount, src}:{mount:boolean, src:string}):JSX.Element {
         )
     )
 }
+
+export async function getStaticProps(context) {
+    return {
+        props: {}
+    }
+}

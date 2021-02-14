@@ -81,3 +81,9 @@ export default function Home():JSX.Element {
         </div>
     );
 }
+
+export async function getStaticProps(context) {
+    return {
+        props: {}
+    }
+}
