@@ -20,7 +20,7 @@ export default function About():JSX.Element {
                     I am a frontend developer from S.Korea and 
                     attending the third year in SungKyunKwan University.
                 </p>
-                <p onClick={()=>setShowCV(true)}>CV &rarr;</p>
+                <p className={styles.button} onClick={()=>setShowCV(true)}>CV &rarr;</p>
             </div>
             <div className={styles.cv}
                 style={{
@@ -36,7 +36,7 @@ export default function About():JSX.Element {
                         <td>SKKU SCG</td>
                     </tr>
                 </table>
-                <p onClick={()=>setShowCV(false)}>Intro &rarr;</p>
+                <p className={styles.button} onClick={()=>setShowCV(false)}>Intro &rarr;</p>
             </div>
         </div>
         </>
